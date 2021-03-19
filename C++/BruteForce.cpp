@@ -2,13 +2,14 @@
 --------------------------------------------------
 Name    : Brute Force Hello, World!
 Author  : Danial Khorasanizadeh
-Course  : WTF is wrong with me?
-Date    : 22/Nov/2020
+Date    : 19/Mar/2021
 --------------------------------------------------
 */
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <iostream>
+#include <ctime>
+#include <thread>
+#include <chrono>
+using namespace std;
 int random(int lower, int upper)
 {
     int num = (rand() % (upper - lower + 1)) + lower;
@@ -16,23 +17,22 @@ int random(int lower, int upper)
 }
 int main(void)
 {
-    char HelloWorld[13] = "Hello, World!";
+    string HelloWorld = "Hello, World!";
+    srand(time(NULL));
     int i = 0;
     char randomChar;
     while (i < 13)
     {
-        srand(time(0));
         randomChar = random(32, 126);
-        printf("%c", randomChar);
-
+        cout << randomChar;
+        this_thread::sleep_for(chrono::milliseconds(10));
         if (randomChar == HelloWorld[i])
         {
             i++;
         }
         else
         {
-            printf("\b");
+            cout << "\b";
         }
     }
-    return 0;
 }
